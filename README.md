@@ -80,6 +80,20 @@ ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the Axes.
 plt.show()                           # Show the figure.
 ```
 
+#### using python local file
+
+Having a # comment with `@mount('/local_path', '/path_to_mount')` will mount the locally file directly to the file system. Note this does not have safe guard, could blow up your memory if you try to load too many files as Pyodide reads all files in memory. See below example. Multiple `@mount` functions are allowed.
+
+```python
+# @mount('R:/test.txt', "/data/test.txt")
+import os
+# @mount('R:/local.csv', '/data/local.csv')
+os.listdir('/data')
+f = open("/data/test.txt", "r")
+print(f.read())
+```
+
+
 ### HTML&CSS
 
 ```html
